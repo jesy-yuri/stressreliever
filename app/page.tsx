@@ -68,7 +68,7 @@ class SoundController {
 
       osc.start(now);
       osc.stop(now + 0.15);
-    } catch {}
+    } catch { }
   }
 
   playDice() {
@@ -93,7 +93,7 @@ class SoundController {
         osc.start(time);
         osc.stop(time + 0.03);
       }
-    } catch {}
+    } catch { }
   }
 
   playRibbit() {
@@ -118,7 +118,7 @@ class SoundController {
 
       osc.start(now);
       osc.stop(now + 0.12);
-    } catch {}
+    } catch { }
   }
 
   playChime(freq = 528) {
@@ -141,7 +141,7 @@ class SoundController {
 
       osc.start(now);
       osc.stop(now + 1.2);
-    } catch {}
+    } catch { }
   }
 }
 
@@ -480,7 +480,7 @@ export default function Home() {
       try {
         const g = ambientNodesRef.current.gain;
         g.gain.linearRampToValueAtTime(0.001, g.context.currentTime + 0.3);
-      } catch {}
+      } catch { }
     }
     ambientNodesRef.current = null;
   };
@@ -550,7 +550,7 @@ export default function Home() {
         ambientNodesRef.current = { source: noise, gain };
         setMessage("🌊 Ocean Waves ambient soundscape active.");
       }
-    } catch {}
+    } catch { }
   };
 
   // --- 11. Canvas Drawing Logic with Coordinate & Scale Fix ---
@@ -953,7 +953,7 @@ export default function Home() {
           ↻ Reset Everything
         </button>
         <p className="footerText">
-          Crafted with care for peaceful micro-breaks, calm thoughts, and happy vibes.
+          @ by jesy_yuri
         </p>
       </footer>
     </main>
