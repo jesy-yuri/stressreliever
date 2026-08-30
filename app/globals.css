@@ -1,0 +1,816 @@
+:root {
+  --bg-main: #0a0e1a;
+  --card-bg: linear-gradient(145deg, #131b31, #0e1526);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-border-hover: rgba(255, 255, 255, 0.2);
+  --accent-purple: #a855f7;
+  --accent-pink: #ec4899;
+  --accent-blue: #38bdf8;
+  --accent-green: #22c55e;
+  --accent-amber: #f59e0b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--bg-main);
+  color-scheme: dark;
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text-main);
+  background: 
+    radial-gradient(circle at 10% 15%, rgba(168, 85, 247, 0.15), transparent 35%),
+    radial-gradient(circle at 90% 30%, rgba(56, 189, 248, 0.12), transparent 40%),
+    radial-gradient(circle at 50% 85%, rgba(236, 72, 153, 0.1), transparent 45%),
+    var(--bg-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+main {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 36px 24px 64px;
+  position: relative;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: #c084fc;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.soundToggle {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-main);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 100px;
+  transition: all 0.2s ease;
+}
+
+.soundToggle.active {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: #86efac;
+}
+
+.soundToggle:hover {
+  transform: scale(1.04);
+}
+
+h1 {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  margin-bottom: 8px;
+}
+
+h1 span {
+  background: linear-gradient(90deg, #c084fc, #38bdf8, #f472b6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sub {
+  max-width: 650px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.score {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  border-radius: 20px;
+  padding: 16px 24px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.score b {
+  font-size: 1.8rem;
+  color: #fef08a;
+  margin-left: 6px;
+}
+
+.score small {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Message Banner */
+.message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-radius: 18px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 24px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #e2e8f0;
+  backdrop-filter: blur(8px);
+}
+
+.msgIcon {
+  font-size: 1.2rem;
+}
+
+/* Main Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Card Common */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  min-height: 250px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--card-border-hover);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+}
+
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.cardDesc {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.smallBtn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f1f5f9;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.18s ease;
+}
+
+.smallBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.03);
+}
+
+.smallBtn:active {
+  transform: scale(0.96);
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+.bonusTag {
+  color: #fef08a;
+  font-weight: 700;
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* 1. Bubble Wrap */
+.bubbleZone {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.bubbleBtn {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.35), rgba(56, 189, 248, 0.15) 60%, rgba(168, 85, 247, 0.2));
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.3), 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-size: 1.4rem;
+  display: grid;
+  place-items: center;
+  transition: transform 0.15s ease, opacity 0.2s ease, background 0.2s;
+  animation: gentleFloat 4s ease-in-out infinite alternate;
+}
+
+.bubbleBtn:hover {
+  transform: scale(1.1);
+  box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.45), 0 6px 14px rgba(56, 189, 248, 0.3);
+}
+
+.bubbleBtn:active {
+  transform: scale(0.9);
+}
+
+.bubbleBtn.popped {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+  opacity: 0.3;
+  transform: scale(0.85);
+  cursor: default;
+}
+
+/* 2. Silicone Pop-It */
+.popItGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.popItDimple {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease;
+  position: relative;
+}
+
+.dimple-0 { background: linear-gradient(135deg, #f43f5e, #be123c); }
+.dimple-1 { background: linear-gradient(135deg, #f59e0b, #b45309); }
+.dimple-2 { background: linear-gradient(135deg, #10b981, #047857); }
+.dimple-3 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+
+.popItDimple.up {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  transform: scale(1);
+}
+
+.popItDimple.up:hover {
+  transform: scale(1.08);
+}
+
+.popItDimple.down {
+  transform: scale(0.8);
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.7);
+  opacity: 0.65;
+}
+
+/* 3. Balloon Panic */
+.balloonRow {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 100px;
+  margin: 10px 0;
+}
+
+.balloonItem {
+  background: transparent;
+  font-size: 2.8rem;
+  line-height: 1;
+  animation: floatBalloon 3s ease-in-out infinite alternate;
+  transition: transform 0.15s ease;
+}
+
+.balloonItem:nth-child(2) { animation-delay: 0.4s; }
+.balloonItem:nth-child(3) { animation-delay: 0.8s; }
+.balloonItem:nth-child(4) { animation-delay: 1.2s; }
+.balloonItem:nth-child(5) { animation-delay: 1.6s; }
+
+.balloonItem:hover:not(:disabled) {
+  transform: scale(1.25) rotate(6deg);
+}
+
+.balloonPopped {
+  animation: none;
+  font-size: 2rem;
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* 4. Squishy Button */
+.squishyCard {
+  background: linear-gradient(145deg, #2b1347, #130e26);
+}
+
+.squishContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.squishBtn {
+  width: 100%;
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #c084fc, #9333ea);
+  color: white;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  box-shadow: 0 10px 0 #581c87, 0 18px 25px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease;
+}
+
+.squishEmoji {
+  font-size: 1.4rem;
+}
+
+.squishBtn.squished {
+  transform: translateY(8px) scale(0.96, 0.9);
+  box-shadow: 0 2px 0 #581c87, 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.squishCount {
+  font-size: 0.84rem;
+  color: #d8b4fe;
+  text-align: center;
+}
+
+/* 5. Fidget Spinner */
+.spinnerContainer {
+  display: grid;
+  place-items: center;
+  padding: 18px 0;
+  cursor: grab;
+}
+
+.spinnerContainer:active {
+  cursor: grabbing;
+}
+
+.spinnerWheel {
+  width: 90px;
+  height: 90px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  transform-origin: center center;
+}
+
+.blade {
+  position: absolute;
+  font-size: 1.8rem;
+  user-select: none;
+}
+
+.blade1 { top: -10px; }
+.blade2 { bottom: 0; left: -10px; }
+.blade3 { bottom: 0; right: -10px; }
+
+.spinnerCore {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #38bdf8;
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  box-shadow: 0 0 12px #38bdf8;
+  z-index: 2;
+}
+
+/* 6. Catch the Frog */
+.frogCard {
+  grid-column: span 1;
+}
+
+.scoreBadge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #86efac;
+  background: rgba(34, 197, 94, 0.15);
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+.frogZone {
+  height: 130px;
+  background: radial-gradient(circle at 50% 50%, #1c3b1e, #0c1c0e);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
+  margin: 6px 0;
+}
+
+.waterRipple {
+  position: absolute;
+  inset: 0;
+  background: repeating-radial-gradient(circle at 50% 50%, transparent, transparent 15px, rgba(56, 189, 248, 0.04) 16px, transparent 20px);
+  pointer-events: none;
+}
+
+.frogBtn {
+  position: absolute;
+  background: transparent;
+  font-size: 2.2rem;
+  transition: left 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), top 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  line-height: 1;
+}
+
+.frogBtn.hopping {
+  transform: scale(1.3) rotate(-15deg);
+}
+
+/* 7. Quantum Dice */
+.diceCard {
+  text-align: center;
+  align-items: center;
+}
+
+.diceBtn {
+  font-size: 5rem;
+  background: transparent;
+  line-height: 1;
+  margin: 12px 0;
+  transition: transform 0.15s ease;
+}
+
+.diceBtn:hover:not(:disabled) {
+  transform: scale(1.15) rotate(8deg);
+}
+
+.diceBtn.rolling {
+  animation: rollTumble 0.6s linear infinite;
+}
+
+/* 8. Particle Sparkle Cannon */
+.particleCard {
+  background: linear-gradient(145deg, #102347, #240c36);
+  text-align: center;
+}
+
+.chaosBtn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 18px;
+  background: linear-gradient(90deg, #ec4899, #8b5cf6, #38bdf8);
+  color: white;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  margin-top: 14px;
+  box-shadow: 0 8px 24px rgba(236, 72, 153, 0.35);
+  transition: all 0.2s ease;
+}
+
+.chaosBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(236, 72, 153, 0.5);
+}
+
+.chaosBtn:active {
+  transform: scale(0.96);
+}
+
+/* 9. Mindful Box Breathing */
+.breathingCard {
+  text-align: center;
+}
+
+.phaseBadge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #6ee7b7;
+  background: rgba(16, 185, 129, 0.15);
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+.breathOrbContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 110px;
+}
+
+.breathOrb {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.3), rgba(16, 185, 129, 0.1));
+  border: 2px solid rgba(52, 211, 153, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+  transition: transform 1s ease-in-out, box-shadow 1s ease-in-out;
+}
+
+.orbIcon {
+  font-size: 1.5rem;
+}
+
+.orbTimer {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #a7f3d0;
+}
+
+.breathOrb.breathing-inhale {
+  transform: scale(1.4);
+  box-shadow: 0 0 35px rgba(52, 211, 153, 0.6);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.4), rgba(52, 211, 153, 0.2));
+}
+
+.breathOrb.breathing-hold {
+  transform: scale(1.4);
+  box-shadow: 0 0 45px rgba(250, 204, 21, 0.6);
+}
+
+.breathOrb.breathing-exhale {
+  transform: scale(0.9);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+}
+
+.breathOrb.breathing-rest {
+  transform: scale(1);
+}
+
+.breathActionBtn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #86efac;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.breathActionBtn.stopBtn {
+  background: rgba(244, 63, 94, 0.2);
+  border-color: rgba(244, 63, 94, 0.4);
+  color: #fda4af;
+}
+
+.breathActionBtn:hover {
+  transform: scale(1.02);
+}
+
+/* 10. Ambient Zen Sounds */
+.ambientButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.ambientBtn {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.ambientBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.ambientBtn.active {
+  background: rgba(56, 189, 248, 0.25);
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #7dd3fc;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+/* 11. Finger Paint Canvas */
+.wide {
+  grid-column: span 2;
+  min-height: 330px;
+}
+
+.canvasControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.colorPalette {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.colorDot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.colorDot.selected {
+  transform: scale(1.25);
+  border-color: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+.toolBtns {
+  display: flex;
+  gap: 6px;
+}
+
+.toolBtns .activeTool {
+  background: rgba(236, 72, 153, 0.3);
+  border-color: rgba(236, 72, 153, 0.6);
+  color: #fbcfe8;
+}
+
+.paintCanvas {
+  width: 100%;
+  height: 200px;
+  background: #0d1326;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  touch-action: none;
+  cursor: crosshair;
+  margin: 10px 0;
+  display: block;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.bigResetBtn {
+  padding: 16px 28px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  color: #f8fafc;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.bigResetBtn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: scale(1.04);
+}
+
+.footerText {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 14px;
+}
+
+/* Particles Dynamic Burst */
+.particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  animation: dynamicBurst 1.6s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+/* Keyframe Animations */
+@keyframes dynamicBurst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--vx, 0px), calc(var(--vy, -100px) + 80px)) scale(0.3) rotate(360deg);
+  }
+}
+
+@keyframes gentleFloat {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-4px); }
+}
+
+@keyframes floatBalloon {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-8px); }
+}
+
+@keyframes rollTumble {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  main {
+    padding: 24px 16px 48px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .wide {
+    grid-column: span 1;
+  }
+  h1 {
+    font-size: 2.5rem;
+  }
+  .card {
+    min-height: auto;
+  }
+  .paintCanvas {
+    height: 180px;
+  }
+}
